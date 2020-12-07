@@ -16,6 +16,6 @@ RUN mkdir -p /run/nginx /www /etc/nginx/ssl
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/certs/localhost.key -out /etc/ssl/certs/localhost.crt \
     -subj "/C=FR/ST=France/L=Lyon/O=42Lyon/OU=42Network/CN=localhost/emailAddress=akerdeka@student.42lyon.fr"
 
-EXPOSE 80 443
+EXPOSE 22 80 443
 
 CMD nginx -g 'pid /tmp/nginx.pid; daemon off;'

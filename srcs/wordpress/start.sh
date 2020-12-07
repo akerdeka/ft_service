@@ -1,10 +1,22 @@
 #!/bin/sh
-openrc
-touch /run/openrc/softlevel
-service php-fpm7 restart
-/usr/sbin/sshd
-nginx -g 'pid /tmp/nginx.pid; daemon off;'
-php-fpm7
+
+php -S 0.0.0.0:5050 -t /www/
+
+while true; do
+    sleep 1;
+done
+
+
+
+
+
+##!/bin/sh
+#openrc
+#touch /run/openrc/softlevel
+#service php-fpm7 restart
+#/usr/sbin/sshd
+#nginx -g 'pid /tmp/nginx.pid; daemon off;'
+#php-fpm7
 
 #while :
 #do
