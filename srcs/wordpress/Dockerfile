@@ -17,7 +17,6 @@ RUN apk add --no-cache php7 php7-fpm php7-opcache php7-gd php7-mysqli php7-zlib 
 #
 #COPY telegraf.conf /etc/telegraf/
 
-
 RUN adduser -D -g 'www' www
 RUN mkdir -p /www
 RUN chown -R www:www /var/lib/nginx
