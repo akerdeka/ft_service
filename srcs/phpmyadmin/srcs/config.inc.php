@@ -34,7 +34,7 @@ $cfg['Servers'][$i]['user'] = "pma_admin";
 $cfg['Servers'][$i]['password'] = "pma_admin";
 $cfg['Servers'][$i]['compress'] = false;
 $cfg['Servers'][$i]['AllowNoPassword'] = true;
-$cfg['Servers'][$i]['host'] = 'service-mysql';
+$cfg['Servers'][$i]['host'] = '10.99.99.99:3306';
 /**
  * Directories for saving/loading files from server
  */

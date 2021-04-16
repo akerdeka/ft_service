@@ -1,7 +1,8 @@
-#!/bin/sh
+openrc
 
-php -S 0.0.0.0:5050 -t /www/
+touch /run/openrc/softlevel
 
-while true; do
-    sleep 1;
-done
+rc-service php-fpm7 restart & ./telegraf/telegraf & /usr/bin/supervisord -c /etc/supervisord.conf &  while true; do
+    rc-service php-fpm7 status || rc-service php-fpm7 restart;
+    sleep 5;
+done;

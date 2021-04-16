@@ -2,19 +2,19 @@
 
 mysql_install_db --user=mysql --datadir=/var/lib/mysql
 
-mkdir run/openrc
 openrc
 touch /run/openrc/softlevel
 rc-service mariadb start
 
-echo "CREATE DATABASE wordpress;" | mysql -u root
-echo "CREATE USER 'admin'@'%' IDENTIFIED BY 'password';" | mysql -u root
-# echo "SET PASSWORD FOR root@'%'=PASSWORD('password');" | mysql -u root
-echo "GRANT ALL PRIVILEGES ON wordpress.* TO 'admin'@'%';" | mysql -u root
-echo "FLUSH PRIVILEGES;" | mysql -u root
+mysql -u root -e "CREATE DATABASE wordpress;"
+mysql -u root -e "CREATE USER admin@'%' IDENTIFIED BY 'password';"
+mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO admin@'%';"
+mysql -u root -e "FLUSH PRIVILEGES;"
 
 rc-service mariadb restart
+mysql -u root wordpress < wordpress.sql
 
-while true; do
-    sleep 1;
-done
+rc-service mariadb restart & ./telegraf/telegraf & while true; do
+    rc-service mariadb status || rc-service mariadb restart;
+    sleep 5;
+done;
